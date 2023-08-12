@@ -1,4 +1,5 @@
 import axios from "axios"; 
+import AuthRedirect from './AuthRedirect';
 
 const api = axios.create({
     withCredentials: true
@@ -12,12 +13,12 @@ api.interceptors.request.use(config => {
   }
   return config;
 });
-
 api.interceptors.response.use(
+  
   response => response,
   async error => {
     const originalRequest = error.config;
-
+    
     if (error.response.status === 401 && !originalRequest._retry) {
       
       originalRequest._retry = true;
@@ -37,10 +38,11 @@ api.interceptors.response.use(
         return api(originalRequest);
         
       } catch (_error) {
+
         
         localStorage.removeItem("token"); 
-        console.log("REDIRECT TO LOGIN");
-        return;
+        console.log("redirect to login");
+        return window.location.href = '/login';
       }
 
     }
