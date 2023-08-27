@@ -1,11 +1,26 @@
 import React from "react";
-function App()
+import '../css/Plugin.css';
+import Plugin from "../components/Plugin";
+import Navbar from "../components/Navbar";
+import '../css/Main.css';
+import Layout from "../components/Layout";
+import Plugins from "../components/Plugins";
+
+function Main()
 {
     return(
-        <div>
-            Раб
-        </div>
+        <Layout>
+            <Plugins items={[
+                <Plugin></Plugin>,
+                <Plugin></Plugin>,
+                <Plugin></Plugin>,
+                <Plugin></Plugin>,
+                <Plugin></Plugin>,
+                <Plugin></Plugin>,
+                <Plugin></Plugin>
+            ]}></Plugins>
+        </Layout>       
     )
 }
 
-export default App;
+export default Main;

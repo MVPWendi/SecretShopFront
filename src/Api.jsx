@@ -1,6 +1,8 @@
-import axios from "axios"; 
-import AuthRedirect from './AuthRedirect';
 
+// Interceptors
+import axios from "axios"; 
+
+// Interceptor for adding AcessToken to every request
 const api = axios.create({
     withCredentials: true
 });
@@ -13,12 +15,15 @@ api.interceptors.request.use(config => {
   }
   return config;
 });
+
+
+// Interceptor for updating AccessToken and Redirect if token to old
 api.interceptors.response.use(
   
   response => response,
   async error => {
     const originalRequest = error.config;
-    
+    console.log(error);
     if (error.response.status === 401 && !originalRequest._retry) {
       
       originalRequest._retry = true;
@@ -34,20 +39,20 @@ api.interceptors.response.use(
         console.log("DATA: " + response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("refreshToken", response.data.refreshtoken);
+        localStorage.setItem("name", response.data.name)
         api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
         return api(originalRequest);
         
       } catch (_error) {
-
-        
-        localStorage.removeItem("token"); 
-        console.log("redirect to login");
+        localStorage.removeItem("token");
         return window.location.href = '/login';
       }
-
     }
+    if(error.response.status!=400)
+    {
     return Promise.reject(error);
-  }  
+    }
+  } 
 );
 
 export default api;

@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import api from '../Api';
-import { Route } from 'react-router-dom';
+import '../css/App.css'
 
-
-
+function OnRegister()
+{
+  window.location.href = '/Register';
+}
 function Login() {
-  const [data, setData] = useState("");
+  const [result, setResult] = useState('');
   const [email, setEmail] = useState('test@mail.ru');
   const [password, setPassword] = useState('123456');
   
@@ -20,14 +22,27 @@ function Login() {
     });
    if(resp)
    {
+    if(resp.status == 200) {
+      console.log(resp.data)
    localStorage.setItem("token", resp.data.token)
    localStorage.setItem("refreshToken", resp.data.refreshToken);
+   localStorage.setItem("name", resp.data.name)
+   setResult('Вы вошли');
+   //return window.location.href = '/';
+    }
+    else{
+      console.log(resp.status);
+      
+    }
+   } else{
+    console.log("EROR");
+    setResult('Неверный пароль')
    }
     // отправка данных на сервер для аутентификации
   }
 
   return (
-    <div>  
+    <div className='login-form'>  
     <form onSubmit={handleSubmit}>
       <input 
         type="email"
@@ -40,9 +55,13 @@ function Login() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}  
       />
-
-      <button type="submit">Войти</button>
+      <div>
+        <button type="submit">войти</button>
+        <button onClick={OnRegister}>регистрация</button>
+      </div>
+      <p>{result}</p>
     </form>
+      
     </div>
   );
 }

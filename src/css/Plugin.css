@@ -1,0 +1,93 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Audiowide:wght@400;700&display=swap');
+
+.plugin {
+    width: 27.4375rem/2;
+    height: 12.625rem/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    text-decoration: none;
+}
+
+
+.plugin-image{
+    margin-left: calc(8rem/2);
+    width: 8rem/2;
+height: 8rem;
+flex-shrink: 0;
+background: rgb(250, 249, 250);
+box-shadow: 3px 3px 17px 0px #07F;
+border: 2px solid black;
+z-index: 2;
+border-radius: 0.8rem;
+}
+
+.plugin-card{
+    width: 23rem;
+height: 12.625rem;
+margin-left: calc(-8rem/2);
+flex-shrink: 0;
+border-radius: 1.4375rem;
+border: 2px solid #000;
+background: rgba(255, 255, 255, 0.00);
+box-shadow: 3px 3px 17px 0px #07F;
+z-index: 1;
+}
+
+.plugin-card h1{
+    display: flex;
+width: 23rem;
+height: 2.0625rem;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #FFF;
+text-align: center;
+font-family: 'Audiowide', sans-serif;
+font-size: 1.625rem;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+
+}
+
+.plugin-card-info{
+    display: flex;
+    width: 23rem;
+    height: 1.9375rem;
+    flex-direction: column;
+    flex-shrink: 0; 
+    color: #FFF;
+text-align: center;
+font-family: Golos UI;
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.plugin-card p{
+    margin-left: calc(10rem/2);
+    display: flex;
+width: 17.8125rem;
+height: 8.8125rem;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+color: #FFF;
+font-family: Golos UI, sans-serif;
+font-size: 0.875rem;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+
+
+.plugin-list{
+    justify-content: space-between;
+    width: 200vh;
+display: grid;
+grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+}
